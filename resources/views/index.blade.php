@@ -8,54 +8,25 @@
 <div class="px-10 py-5 flex">
     <div class="w-2/3">
         <div class="toppostslide owl-carousel owl-theme relative px-6 inline rounded ">
-            <div class="h-96 relative">
-                <img src="{{ asset('image/news-700x435-1.jpg') }}" alt="" class="h-full w-full rounded object-cover object-center" />
+        @foreach($posts as $post)
+
+        <div class="h-96 relative">
+                <img src="{{ asset($post->image) }}" alt="" class="h-full w-full rounded object-cover object-center" />
                 <div class="bg-slate-900 h-full w-full absolute top-0 opacity-50 rounded"></div>
                 <div class="posttitle absolute bottom-6 inset-x-0 mx-6 text-slate-50">
                     <div class="mb-2">
-                        <a href="">Categories</a>
+                        <a href="">{{ $post->category }}</a>
                         /
-                        <a href="">Post date</a>
+                        <a href="">{{ date('F j Y', strtotime($post->date)) }}</a>
                     </div>
                     <h1 class="text-2xl font-medium overflow-hidden text-ellipsis whitespace-nowrap">
                         <a href="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit voluptas quisquam laboriosam velit dolor labore eum distinctio ullam totam nihil doloremque, repellendus aliquid, deleniti nemo consequuntur repellat accusantium est nobis.
+                            {{ $post->title }}
                         </a>
                     </h1>
                 </div>
             </div>
-            <div class="h-96 relative">
-                <img src="{{ asset('image/news-700x435-1.jpg') }}" alt="" class="h-full w-full rounded object-cover object-center" />
-                <div class="bg-slate-900 h-full w-full absolute top-0 opacity-50 rounded"></div>
-                <div class="posttitle absolute bottom-6 inset-x-0 mx-6 text-slate-50">
-                    <div class="mb-2">
-                        <a href="">Categories</a>
-                        /
-                        <a href="">Post date</a>
-                    </div>
-                    <h1 class="text-2xl font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                        <a href="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit voluptas quisquam laboriosam velit dolor labore eum distinctio ullam totam nihil doloremque, repellendus aliquid, deleniti nemo consequuntur repellat accusantium est nobis.
-                        </a>
-                    </h1>
-                </div>
-            </div>
-            <div class="h-96 relative">
-                <img src="{{ asset('image/news-700x435-1.jpg') }}" alt="" class="h-full w-full rounded object-cover object-center" />
-                <div class="bg-slate-900 h-full w-full absolute top-0 opacity-50 rounded"></div>
-                <div class="posttitle absolute bottom-6 inset-x-0 mx-6 text-slate-50">
-                    <div class="mb-2">
-                        <a href="">Categories</a>
-                        /
-                        <a href="">Post date</a>
-                    </div>
-                    <h1 class="text-2xl font-medium overflow-hidden text-ellipsis whitespace-nowrap">
-                        <a href="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit voluptas quisquam laboriosam velit dolor labore eum distinctio ullam totam nihil doloremque, repellendus aliquid, deleniti nemo consequuntur repellat accusantium est nobis.
-                        </a>
-                    </h1>
-                </div>
-            </div>
+        @endforeach
         </div>
     </div>
     <div class="w-1/3 px-4 py-2 rounded">

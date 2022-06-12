@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin/list_category');
+        $categories = Category::get();
+        return view('admin/list_category', compact('categories'));
     }
 
     /**
@@ -35,6 +36,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -46,8 +48,9 @@ class CategoryController extends Controller
             $category->name = $request->name;
             $category->description = $request->description;
             $category->status = $request->status;
-            // $category->save();
+            $category->save();
         }
+        return redirect()->back();
     }
 
     /**
@@ -67,9 +70,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, $id)
     {
-        //
+        return view('admin/edit_category', compact('categiry'));
     }
 
     /**
@@ -79,9 +82,22 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Category $category, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ]);
+
+        if ($validated) {
+            $category = Category::find($id);
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->status = $request->status;
+            $category->save();
+        }
+        return redirect('admin/category/list');
     }
 
     /**
