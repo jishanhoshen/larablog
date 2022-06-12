@@ -67,22 +67,22 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  mixed $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category, $id)
+    public function edit($id)
     {
-        return view('admin/edit_category', compact('categiry'));
+        $category = Category::find($id);
+        return view('admin/edit_category', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category, $id)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'name' => 'required',
@@ -106,8 +106,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->back();
     }
 }

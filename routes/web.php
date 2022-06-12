@@ -17,57 +17,9 @@ use App\Models\Post;
 */
 
 Route::get('/', function () {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $posts = Post::join('categories', 'categories.id', '=', 'posts.category_id')
-                ->get(['posts.id','posts.title','posts.image','categories.created_at as date','categories.name as category']);
+        ->get(['posts.id', 'posts.title', 'posts.image', 'categories.created_at as date', 'categories.name as category']);
     return view('index', compact('posts'));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })->name('/');
 Route::get('/categories', function () {
     return view('categories');
@@ -95,7 +47,9 @@ Route::prefix('admin')->group(function () {
         Route::get('list', [CategoryController::class, 'index'])->name('list_category');
         Route::get('add', [CategoryController::class, 'create'])->name('add_category');
         Route::post('store', [CategoryController::class, 'store'])->name('store_category');
-        Route::post('edit/{}', [CategoryController::class, 'edit'])->name('edit_category');
+        Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('edit_category');
+        Route::post('update/{id}', [CategoryController::class, 'update'])->name('update_category');
+        Route::get('destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy_category');
     });
     Route::prefix('tag')->group(function () {
         Route::get('add', function () {
