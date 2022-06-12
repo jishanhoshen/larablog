@@ -1,0 +1,47 @@
+.owl-nav{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: transparent;
+    .owl-next, .owl-prev{
+        position: relative;
+        width: 30px;
+        height: 30px;
+        margin: 0 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #dee2e6 !important;
+        background: 0 0 !important;
+        border: 1px solid #dee2e6 !important;
+        transition: 0.3s;
+        &:hover{
+            background-color: #dc2626 !important;
+        }
+    }
+}
+
+.trendingtopic{
+    .owl-nav{
+        width: auto;
+        height: 30px;
+        justify-content: flex-start;
+        top: calc(50% - 15px);
+        left: 0;
+        z-index: 1;
+    }
+    .owl-stage-outer {
+        left: 85px;
+    }
+}
+.toppostslide, .featured{
+    .owl-nav{
+        margin: 0px 20px;
+        padding: 0px 20px;
+        top: 190px;
+        left: 0;
+        right: 0;
+        justify-content: space-between;
+    }
+}
