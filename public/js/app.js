@@ -2081,8 +2081,6 @@ $(document).ready(function () {
     dots: false,
     items: 1
   });
-});
-$(document).ready(function () {
   $('.toppostslide.owl-carousel').owlCarousel({
     autoplay: !0,
     smartSpeed: 1500,
@@ -2094,8 +2092,6 @@ $(document).ready(function () {
     dots: false,
     items: 1
   });
-});
-$(document).ready(function () {
   $('.featured.owl-carousel').owlCarousel({
     autoplay: !0,
     smartSpeed: 1500,

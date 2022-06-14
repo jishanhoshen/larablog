@@ -9,7 +9,6 @@
     <div class="w-2/3">
         <div class="toppostslide owl-carousel owl-theme relative px-6 inline rounded ">
         @foreach($posts as $post)
-
         <div class="h-96 relative">
                 <img src="{{ asset($post->image) }}" alt="" class="h-full w-full rounded object-cover object-center" />
                 <div class="bg-slate-900 h-full w-full absolute top-0 opacity-50 rounded"></div>
