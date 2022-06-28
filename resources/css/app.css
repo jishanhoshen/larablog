@@ -1,4 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/regular.css';
+@import '@fortawesome/fontawesome-free/css/solid.css';
+@import '@fortawesome/fontawesome-free/css/brands.css';
+
 @import "owl.carousel/dist/assets/owl.carousel.css";
+
+ul:has(.tagsInput) {
+    box-shadow: 0 0 2px 2px rgb(200 30 30) !important;
+}

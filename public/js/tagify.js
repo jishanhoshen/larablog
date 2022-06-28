@@ -1,23 +1,29 @@
 const ul = document.querySelector(".inputTags ul"),
 input = document.querySelector(".tagsInput"),
 tagNumb = document.querySelector(".details span");
+tagsinput = document.querySelector(".inputTags #tags");
+form = document.querySelector('form');
 
-let maxTags = 100,
-tags = JSON.parse(JSON.stringify(input.dataset.value.split(',')));
-console.log(tags);
+let maxTags = 0;
+if(input.dataset.limit){
+    maxTags = input.dataset.limit
+}
 
+let tags = [];
+if(input.dataset.value){
+    tags = JSON.parse(JSON.stringify(input.dataset.value.split(',')));
+}
 countTags();
 createTag();
 
 function countTags(){
-    input.focus();
     tagNumb.innerText = maxTags - tags.length;
 }
 
 function createTag(){
     ul.querySelectorAll("li").forEach(li => li.remove());
     tags.slice().reverse().forEach(tag =>{
-        let liTag = `<li>${tag} <i class="uit uit-multiply" onclick="remove(this, '${tag}')"></i></li>`;
+        let liTag = `<li class="dark:bg-gray-700"><input type="hidden" name="tags[]" value="${tag}">${tag} <i class="fa fa-times" onclick="remove(this, '${tag}')"></i></li>`;
         ul.insertAdjacentHTML("afterbegin", liTag);
     });
     countTags();

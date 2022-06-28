@@ -10,7 +10,6 @@
 </head>
 
 <body class="bg-slate-200">
-
     <div class="topheader text-slate-50 bg-black text-sm font-medium capitalize">
         <div class="container mx-auto px-5 flex items-center justify-between">
             <div class="flex items-center">
@@ -18,22 +17,15 @@
                     Trending
                 </div>
                 <div class="trendingtopic w-96 owl-carousel owl-theme">
+                    @foreach($trending as $trend)
                     <div class="topicslide px-4 text-slate-50 overflow-hidden text-ellipsis whitespace-nowrap">
-                        <a href="#">trendting topic trendting topic trendting topic trendting topic trendting topic </a>
+                        <a href="{{ $trend->id}}"> {{ $trend->title }} </a>
                     </div>
-                    <div class="topicslide px-4 text-slate-50 overflow-hidden text-ellipsis whitespace-nowrap">
-                        <a href="#">trendting topic trendting topic trendting topic trendting topic trendting topic </a>
-                    </div>
-                    <div class="topicslide px-4 text-slate-50 overflow-hidden text-ellipsis whitespace-nowrap">
-                        <a href="#">trendting topic trendting topic trendting topic trendting topic trendting topic </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="date flex justify-end">
-                @php
-                $mytime = Carbon\Carbon::now();
-                echo $mytime->format('l, F d, Y');
-                @endphp
+                {{ $datetime }}
             </div>
         </div>
     </div>
@@ -59,16 +51,25 @@
             </nav>
 
             <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                @if($auth)
+                <p class="capitalize py-1 px-3 font-semibold">{{ $user->fullname }}</p>
+                <a href="{{ route('logout') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Logout
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+                @else
                 <a href="{{ route('signin') }}" class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Signin
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                         <path d="M5 12h14M12 5l7 7-7 7"></path>
                     </svg>
                 </a>
+                @endif
             </div>
         </div>
     </div>
-    
-        @yield('content')
+
+    @yield('content')
 
     <footer class="footer p-10 bg-base-200 text-base-content">
         <div>
